@@ -47,7 +47,7 @@ class MovieController extends Controller
     {
         try {
             // returns all movies
-            $movies = Movie::where('startYear', '2023')->paginate($request->per_page ?? 25);
+            $movies = Movie::where('startYear', '2022')->paginate($request->per_page ?? 25);
             return MovieResource::collection($movies)->additional(['status' => true, 'message' => 'List Successfully']);
         } catch (\Exception $e) {
             return response()->json([
@@ -149,7 +149,7 @@ class MovieController extends Controller
             // returns search results movies
             $movies = $request->has('q')
                 ? $movie->search($request->q, $request->per_page ?? 25)
-                : Movie::where('startYear', '2023')->paginate($request->per_page ?? 25);
+                : Movie::where('startYear', '2022')->paginate($request->per_page ?? 25);
             return MovieResource::collection($movies)->additional(['status' => true, 'message' => 'Search Completed'])->response()->setStatusCode(200);
         } catch (\Exception $e) {
             return response()->json([
